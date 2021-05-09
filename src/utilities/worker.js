@@ -1,4 +1,4 @@
-export default parseText = (textFile) => {
+onmessage = (e) => {
   /* Returns JSON object of the chat text
   {
    <year/month/day> : {
@@ -12,6 +12,8 @@ export default parseText = (textFile) => {
   }
   
   */
+  console.log("[WORKER]: Message received from main");
+  let textFile = e.data;
 
   const parseDate = (textLine) => {
     /* Function to parse the Date value in the text as YYYY/MM/DD  
@@ -34,7 +36,7 @@ export default parseText = (textFile) => {
   };
   let lines = textFile.split("\n");
 
-  let retObj = lines.slice(-100).reduce((result, line, num) => {
+  let retObj = lines.slice(-3000).reduce((result, line, num) => {
     let timestamp, sender, text, msg;
 
     let [date, datePart] = parseDate(line.split(",")[0]);
@@ -72,5 +74,6 @@ export default parseText = (textFile) => {
     }
     return result;
   }, {});
-  return retObj;
+
+  postMessage(retObj);
 };
