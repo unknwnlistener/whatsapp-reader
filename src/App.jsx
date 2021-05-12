@@ -17,6 +17,7 @@ function App() {
     myWorker.onmessage = e => {
       setJSON(e.data);
     };
+    setLoading(false);
 
   }, [text]);
 
@@ -26,7 +27,7 @@ function App() {
       <header className="App-header">
         <TextFileReader setText={setText}></TextFileReader>
          {<Loader visible={loading}></Loader>}
-         {<Messenger loading={loading} setLoading={setLoading} jsonObj={parsedJSON}></Messenger>}
+         {<Messenger loading={loading} jsonObj={parsedJSON}></Messenger>}
       </header>
     </div>
   );

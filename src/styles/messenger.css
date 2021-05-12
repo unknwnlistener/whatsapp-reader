@@ -4,11 +4,26 @@
   background-color: var(--header-bg-color);
   position: sticky;
   top: 0;
+  display: inline-flex;
   /* margin-top: 0; */
 }
 
 .hidden {
   display: none;
+}
+
+.meta .settings {
+  position: absolute;
+  width: 100%;
+  margin: 0.5rem auto;
+}
+
+.meta .settings .settings__content {
+  background-color: var(--gray-100);
+}
+
+.meta .settings .settings__content .elements {
+  display: block;
 }
 
 .meta .people {
@@ -57,5 +72,10 @@
 }
 
 .chat > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.lazyload-wrapper > div {
   margin-top: 0.25rem;
 }
