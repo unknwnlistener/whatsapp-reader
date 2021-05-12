@@ -9,7 +9,7 @@ export const TextFileReader = ({setText}) => {
 		const txt = await r.text();
 		setText(txt);
 	}
-	fetchFile('../chatText.txt');
+	fetchFile('../Bee.txt');
 
 		return null;
 }

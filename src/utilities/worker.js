@@ -36,7 +36,7 @@ onmessage = (e) => {
   };
   let lines = textFile.split("\n");
 
-  let retObj = lines.slice(-3000).reduce((result, line, num) => {
+  let retObj = lines.slice(-1000).reduce((result, line, num) => {
     let timestamp, sender, text, msg;
 
     let [date, datePart] = parseDate(line.split(",")[0]);

@@ -3,9 +3,10 @@ import '../styles/messenger.css';
 import { Message } from "./Message";
 
 export const Messenger = ({jsonObj, setLoading, loading}) => {
-  
-  setLoading(true);
+  const [sender, setSender] = useState('You');
+  const [receiver, setReceiver] = useState('Me');
   const printMessages = () => {
+    setLoading(true);
     let row =[];
     let count = 0;
     for(let date in jsonObj) {
@@ -23,8 +24,8 @@ export const Messenger = ({jsonObj, setLoading, loading}) => {
     <>
     <section className={"meta"+(loading ? ' hidden' : '')}>
       <div className="people">
-        <span className="sender">You</span>
-        <span className="receiver">Me</span>
+        <input onChange={setSender} defaultValue={sender} className="sender" />
+        <input onChange={setReceiver} defaultValue={receiver} className="receiver" />
       </div>
     </section>
     <section className={"chat"+(loading ? ' hidden' : '')}>

@@ -16,9 +16,6 @@ function App() {
     myWorker.postMessage(text);
     myWorker.onmessage = e => {
       setJSON(e.data);
-      if(parsedJSON !== null || parsedJSON !== undefined) { 
-        // setLoading(false);
-       }
     };
 
   }, [text]);

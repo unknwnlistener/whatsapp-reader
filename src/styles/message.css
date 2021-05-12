@@ -2,10 +2,10 @@
   max-width: 400px;
   max-height: 150px;
   overflow-x: wrap;
-  background-color: hsl(0, 0%, 0%);
+  background-color: var(--black);
   display: flex;
   flex-flow: column nowrap;
-  color: white;
+  color: var(--font-color);
   align-items: flex-end;
   padding: 0.25rem 0.5rem;
   border-radius: 1rem;
