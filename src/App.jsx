@@ -25,9 +25,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <TextFileReader setText={setText}></TextFileReader>
-         {<Loader visible={loading}></Loader>}
-         {<Messenger loading={loading} jsonObj={parsedJSON}></Messenger>}
+        {text === '' ?
+          <TextFileReader setText={setText}></TextFileReader> :
+          (<>
+            <Loader visible={loading}></Loader>
+            <Messenger loading={loading} jsonObj={parsedJSON}></Messenger>
+            </>)
+        }
       </header>
     </div>
   );
