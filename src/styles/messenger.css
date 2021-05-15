@@ -76,3 +76,19 @@
 .chat .right {
   justify-content: flex-end;
 }
+
+.xchg-btn {
+  background-color: blue;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border-radius: 10px;
+  color: white;
+  padding: 0 1rem;
+}
+.xchg-btn::before {
+  content: "⬅ ";
+}
+
+.xchg-btn::after {
+  content: " ➡";
+}

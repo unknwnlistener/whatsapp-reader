@@ -8,10 +8,12 @@ export const Messenger = ({ jsonObj, loading }) => {
   const [receiver, setReceiver] = useState('Me');
   const printMessages = () => {
     var rows = [];
+    let oneSender = '';
     for (let date in jsonObj) {
       rows.push({ type: 'date', value: date });
       jsonObj[date]["msgs"].map((value) => {
-        let classValue = value["sender"] === "Bee" ? "left" : "right";
+        if (oneSender === '') oneSender = value['sender'];
+        let classValue = value["sender"] === oneSender ? "left" : "right";
         rows.push({ type: classValue, value: value });
         // rows.push(<div key={count++} className={classValue}><Message timestamp={value["timestamp"]} message={value["text"]}></Message></div>);
       });
@@ -36,13 +38,21 @@ export const Messenger = ({ jsonObj, loading }) => {
     return window.innerHeight - 60;
   }
 
+  const handleExchange = () => {
+    let sndr = sender;
+    console.log(sndr, sender, receiver);
+    setSender(receiver);
+    setReceiver(sndr);
+  }
+
 
   return (
     <>
     <section className={"meta"+(loading ? ' hidden' : '')}>
       <div className="people">
-        <input onChange={setSender} defaultValue={sender} className="sender" />
-        <input onChange={setReceiver} defaultValue={receiver} className="receiver" />
+        <input onChange={(e) => setSender(e.target.value)} value={sender} className="sender" />
+        <button className="xchg-btn" onClick={handleExchange}>Switch Names</button>
+        <input onChange={(e) => setReceiver(e.target.value)} value={receiver} className="receiver" />
         </div>
         <div className="settings hidden">
           <button className="settings__cog">Settings</button>
