@@ -3,7 +3,7 @@ import './App.css';
 import './styles/messenger.css';
 import {Messenger} from "./components/Messenger";
 import {TextFileReader} from "./components/TextFileReader";
-import {Loader} from "./components/Loader";
+import { Loader } from "./components/Loader";
 
 function App() {
 	const [text, setText] = useState('');
@@ -11,7 +11,7 @@ function App() {
   const [parsedJSON, setJSON] = useState();
   
   useEffect(() => {
-    const myWorker = new Worker('src/utilities/worker.js');
+    const myWorker = new Worker('/worker.js');
     setLoading(true);
     myWorker.postMessage(text);
     myWorker.onmessage = e => {
