@@ -34,7 +34,7 @@
 }
 
 .meta .people input {
-  margin: 0 3rem;
+  margin: 0 auto;
   padding: 0.25rem 0.5rem;
   font-size: 1.2rem;
   width: 7rem;
@@ -91,4 +91,19 @@
 
 .xchg-btn::after {
   content: " ➡";
+}
+
+@media screen and (max-width: 580px) {
+  .meta .people input {
+    padding: 0.25rem;
+    width: 5rem;
+  }
+  .xchg-btn {
+    background-color: green;
+  }
+
+  .xchg-btn::before,
+  .xchg-btn::after {
+    content: "";
+  }
 }
