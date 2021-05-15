@@ -8,10 +8,12 @@ export const Messenger = ({ jsonObj, loading }) => {
   const [receiver, setReceiver] = useState('Me');
   const printMessages = () => {
     var rows = [];
+    let oneSender = '';
     for (let date in jsonObj) {
       rows.push({ type: 'date', value: date });
       jsonObj[date]["msgs"].map((value) => {
-        let classValue = value["sender"] === "Bee" ? "left" : "right";
+        if (oneSender === '') oneSender = value['sender'];
+        let classValue = value["sender"] === oneSender ? "left" : "right";
         rows.push({ type: classValue, value: value });
         // rows.push(<div key={count++} className={classValue}><Message timestamp={value["timestamp"]} message={value["text"]}></Message></div>);
       });
