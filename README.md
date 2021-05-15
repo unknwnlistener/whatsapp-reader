@@ -2,7 +2,8 @@
 
 - [ ] Filter out meta messages - (text === undefined), (<Media omitted>)
 - [ ] Colour scheme/palette selector
-- [ ] Dynamic parsing of text file for new messages on scroll (lazy load)
+- [x] Dynamic parsing of text file for new messages on scroll (~~lazy load~~)
+  - [ ] Lazy loading is bad. What you want is windowing (like Twitter)
 - [ ] separate "Settings" section for
 
   - [ ] setting color values

@@ -45,13 +45,19 @@
 .chat {
   min-height: 80vh;
   width: 100%;
-  display: block;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 .chat div {
   display: flex;
 }
 
-.chat .current-date {
+.chat .flex-start {
+  align-items: flex-start;
+}
+
+.chat .date {
   justify-content: center;
   font-size: 0.8rem;
   color: var(--black);
@@ -69,13 +75,4 @@
 
 .chat .right {
   justify-content: flex-end;
-}
-
-.chat > div {
-  display: flex;
-  flex-direction: column;
-}
-
-.lazyload-wrapper > div {
-  margin-top: 0.25rem;
 }

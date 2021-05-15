@@ -1,27 +1,41 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+import { VariableSizeList as List } from 'react-window';
 import '../styles/messenger.css';
 import { Message } from "./Message";
-import {Placeholder} from "./PlaceholderComponent";
-import LazyLoad from 'react-lazyload';
 
-export const Messenger = ({jsonObj, loading}) => {
+export const Messenger = ({ jsonObj, loading }) => {
   const [sender, setSender] = useState('You');
   const [receiver, setReceiver] = useState('Me');
   const printMessages = () => {
-    var rows =[];
-    let count = 0;
-    for(let date in jsonObj) {
+    var rows = [];
+    for (let date in jsonObj) {
       rows.push({ type: 'date', value: date });
-      jsonObj[date]["msgs"].map((value)=> {
+      jsonObj[date]["msgs"].map((value) => {
         let classValue = value["sender"] === "Bee" ? "left" : "right";
-        rows.push({type: classValue, value:value});
+        rows.push({ type: classValue, value: value });
         // rows.push(<div key={count++} className={classValue}><Message timestamp={value["timestamp"]} message={value["text"]}></Message></div>);
       });
     }
     return rows;
-  }
+  };
 
   let finalRows = printMessages();
+
+  const Row = ({ index, style }) => {
+    return (<div style={style} className={finalRows[index]['type'] + ' flex-start'}>
+      <div className="spacer-top"></div>
+      <Message key={index} type={finalRows[index]['type']} data={finalRows[index]['value']} />
+    </div>);
+  };
+
+  const getItemSize = (index) => {
+    return finalRows[index]['type'] === 'date' ? 25 : 100;
+  }
+
+  const getWindowHeight = () => {
+    return window.innerHeight - 60;
+  }
+
 
   return (
     <>
@@ -47,11 +61,16 @@ export const Messenger = ({jsonObj, loading}) => {
         </div>
     </section>
       <section className={"chat" + (loading ? ' hidden' : '')}>
-        {finalRows.map((row, i) => {
-          return (<LazyLoad height="100%" placeholder={<Placeholder />} >
-            <Message key={i} type={row['type']} data={row['value']} />
-          </LazyLoad>)
-        })}
+            <List
+              height={getWindowHeight()}
+              width={"100%"}
+              itemCount={finalRows.length}
+              itemSize={getItemSize}>
+              {/* {finalRows.map((row, i) =>
+                <Message key={i} type={row['type']} data={row['value']} />
+              )} */}
+              {Row}
+            </List>
           
     </section>
     </> 
