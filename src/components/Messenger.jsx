@@ -51,7 +51,7 @@ export const Messenger = ({ jsonObj, loading }) => {
     <section className={"meta"+(loading ? ' hidden' : '')}>
       <div className="people">
         <input onChange={(e) => setSender(e.target.value)} value={sender} className="sender" />
-        <button className="xchg-btn" onClick={handleExchange}>Switch Names</button>
+        <button className="xchg-btn" onClick={handleExchange}>Switch</button>
         <input onChange={(e) => setReceiver(e.target.value)} value={receiver} className="receiver" />
         </div>
         <div className="settings hidden">
